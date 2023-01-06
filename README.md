@@ -14,7 +14,7 @@ TB-128XU | ZAAN*,ZAAT* | QCom SDM680   |  y  |   possibly (TBA)
 
 The TB-128FU has similar specs to the Lenovo Xiaoxin Pad 2022 and Moto Tab G62, so it might work on them too.
 
-For more information, see the [XDA Developer's thread](https://forum.xda-developers.com/P11/development/recovery-twrp-3-3-x-lenovo-smart-tab-m10-plus-t4005859) . 
+For more information, see the [XDA-Developer thread](https://forum.xda-developers.com/t/recovery-tb128fu-unofficial-twrp-3-7-x-for-lenovo-tab-m10-plus-gen-3-sdm680.4538035/)
 
 ## About Device
 
