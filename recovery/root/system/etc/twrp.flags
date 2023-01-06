@@ -31,10 +31,8 @@
 /efsg               emmc    /dev/block/bootdevice/by-name/fsg               flags=backup=1;subpartitionof=/efs1
 
 # removable storage
-/external_sd        auto    /dev/block/mmcblk1p1                            flags=display="Micro SD Card";storage;wipeingui;removable
-/usb-otg            auto    /dev/block/sda1                                 flags=display="USB OTG";storage;wipeingui;removable
-#/external_sd        auto    /dev/block/mmcblk1p1    /dev/block/mmcblk1      flags=display="Micro SD Card";storage;wipeingui;removable
-#/usb-otg            auto    /dev/block/sda1         /dev/block/sda          flags=display="USB OTG";storage;wipeingui;removable
+/external_sd        auto    /dev/block/mmcblk0p1                            flags=display="Micro SD Card";storage;wipeingui;removable
+/usb-otg            auto    /dev/block/sdg1                                 flags=display="USB OTG";storage;wipeingui;removable
 
 # flashable logical partitions (super)
 /system_image       emmc    /dev/block/bootdevice/by-name/system            flags=backup=1;flashimg=1;display="System Image"
