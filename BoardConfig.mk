@@ -132,6 +132,9 @@ BOARD_USES_METADATA_PARTITION := true
 #Assert
 TARGET_OTA_ASSERT_DEVICE := $(_DEVICE)
 
+# GPT Utils
+BOARD_PROVIDES_GPTUTILS := true
+
 # decryption
 TW_INCLUDE_CRYPTO := true
 BOARD_USES_QCOM_FBE_DECRYPTION := true
@@ -162,6 +165,7 @@ AB_OTA_PARTITIONS += \
     boot \
     dtbo \
     product \
+    recovery \
     system \
     system_ext \
     vbmeta \

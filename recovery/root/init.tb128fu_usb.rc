@@ -60,15 +60,22 @@ on property:sys.usb.config=none && property:sys.usb.configfs=1
 ################################################################################
 # sys.usb.config=sideload  (mostly handled by init.rc)
 ################################################################################
-# correct idProduct (init.rc gets it wrong)
 on property:sys.usb.config=sideload && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idVendor 0x18d1
     write /config/usb_gadget/g1/idProduct 0x4ee7
+
+################################################################################
+# sys.usb.config=fastboot  (mostly handled by init.rc...mostly)
+################################################################################
+on property:sys.usb.config=fastboot && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idVendor 0x18d1
+    write /config/usb_gadget/g1/idProduct 0x4ee0
 
 ################################################################################
 # sys.usb.config=adb  (mostly handled by init.rc)
 ################################################################################
-# correct idProduct (init.rc gets it wrong)
 on property:sys.usb.config=adb && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idVendor 0x18d1
     write /config/usb_gadget/g1/idProduct 0x4ee7
 
 on property:sys.usb.config=adb && property:sys.usb.configfs=1 && property:sys.usb.ffs.ready=1
@@ -116,3 +123,20 @@ on property:sys.usb.config=mass_storage && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
     setprop sys.usb.state ${sys.usb.config}
 
+################################################################################
+# sys.usb.config=mass_storage,adb
+################################################################################
+on property:sys.usb.config=mass_storage,adb && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb_msc"
+    write /config/usb_gadget/g1/idVendor 0x17EF
+    write /config/usb_gadget/g1/idProduct 0x7D88
+
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/mass_storage.0 /config/usb_gadget/g1/configs/b.1/f2
+
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}

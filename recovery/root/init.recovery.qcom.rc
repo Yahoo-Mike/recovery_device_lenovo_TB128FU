@@ -45,3 +45,10 @@ on property:ro.boot.usbcontroller=*
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+## fastbootd requires health-hal and boot-hal
+on boot
+    start health-hal-2-1
+
+on post-fs
+    start boot-hal-1-1

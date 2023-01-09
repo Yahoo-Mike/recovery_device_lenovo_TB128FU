@@ -18,26 +18,26 @@
 # setup environment for minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+# Inherit from device.mk
+$(call inherit-product, $(LOCAL_PATH)/device.mk)
+
+# Inherit some common TWRP stuff
+$(call inherit-product, vendor/twrp/config/common.mk)
+
 # Release name
 PRODUCT_RELEASE_NAME := TB128FU
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-
-# Inherit from our custom product configuration
-$(call inherit-product, vendor/twrp/config/common.mk)
-
-# qcom standard decryption
-# see https://github.com/TeamWin/android_device_qcom_twrp-common/
-PRODUCT_PACKAGES += \
-	qcom_decrypt \
-	qcom_decrypt_fbe
-
-# Device identifier.
+# Device identifier. This must come after all inclusions
 PRODUCT_NAME := twrp_$(PRODUCT_RELEASE_NAME)
 PRODUCT_DEVICE := $(PRODUCT_RELEASE_NAME)
 PRODUCT_BRAND := Lenovo
-PRODUCT_MODEL := Lenovo TB-128FU
+PRODUCT_MODEL := Lenovo TB128FU
 PRODUCT_MANUFACTURER := LENOVO
 
 
