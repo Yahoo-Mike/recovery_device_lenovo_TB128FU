@@ -78,10 +78,6 @@ on property:sys.usb.config=adb && property:sys.usb.ffs.ready=1 && property:sys.u
     write /config/usb_gadget/g1/idVendor 0x18d1
     write /config/usb_gadget/g1/idProduct 0x4ee7
 
-on property:sys.usb.config=adb && property:sys.usb.configfs=1 && property:sys.usb.ffs.ready=1
-    write /config/usb_gadget/g1/idVendor 0x18d1
-    write /config/usb_gadget/g1/idProduct 0x4ee7
-
     rm /config/usb_gadget/g1/configs/b.1/f2
     rm /config/usb_gadget/g1/configs/b.1/f3
 
