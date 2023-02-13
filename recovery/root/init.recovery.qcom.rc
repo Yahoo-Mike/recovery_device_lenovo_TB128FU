@@ -28,8 +28,8 @@
 # QCOM FBE decryption
 import /init.recovery.qcom_decrypt.rc
 
-# extra decryption for TB128FU
-import /init.tb128fu_decrypt.rc
+# start keystore2 - for decryption
+import /system/etc/init/keystore2.rc
 
 # add mtp and mass_storage support
 import /init.tb128fu_usb.rc
